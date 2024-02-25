@@ -1,1 +1,147 @@
-hello
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قائمة التحقق</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .checklist {
+      width: 90%;
+      max-width: 600px;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #333333;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 15px;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #555555;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: #4CAF50;
+      border-color: #4CAF50;
+    }
+
+    label {
+      font-size: 18px;
+      color: #333333;
+      transition: color 0.3s ease;
+    }
+
+    label:hover {
+      color: #4CAF50;
+    }
+
+    #toggleAll {
+      display: block;
+      width: 100%;
+      padding: 15px 0;
+      margin-top: 30px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    #toggleAll:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="checklist">
+    <h1>قائمة التحقق</h1>
+    <ul id="tasks-list">
+      <li><input type="checkbox" id="task1"><label for="task1">تحديد الهدف</label></li>
+      <li><input type="checkbox" id="task2"><label for="task2">التخطيط</label></li>
+      <li><input type="checkbox" id="task3"><label for="task3">التنفيذ</label></li>
+      <li><input type="checkbox" id="task4"><label for="task4">المراقبة والتقييم</label></li>
+      <li><input type="checkbox" id="task5"><label for="task5">التعديل</label></li>
+      <li><input type="checkbox" id="task6"><label for="task6">الاختتام</label></li>
+    </ul>
+    <button id="toggleAll">تحديد الكل</button>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const tasksList = document.getElementById('tasks-list');
+      const checkboxes = tasksList.querySelectorAll('input[type="checkbox"]');
+      const toggleAllButton = document.getElementById('toggleAll');
+      
+      // Update checkboxes state from localStorage
+      for (let i = 0; i < checkboxes.length; i++) {
+        const checkbox = checkboxes[i];
+        const checkboxId = checkbox.id;
+        const isChecked = localStorage.getItem(checkboxId) === 'true';
+        checkbox.checked = isChecked;
+        if (isChecked) {
+          checkbox.nextElementSibling.style.textDecoration = 'line-through';
+        }
+      }
+
+      // Add change event listener to checkboxes
+      checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+          const label = this.nextElementSibling;
+          if (this.checked) {
+            label.style.textDecoration = 'line-through';
+          } else {
+            label.style.textDecoration = 'none';
+          }
+          localStorage.setItem(this.id, this.checked);
+          // Send checkbox state to other device using your preferred method (e.g., AJAX request to server)
+        });
+      });
+
+      // Add click event listener to toggle all button
+      toggleAllButton.addEventListener('click', function() {
+        const toggleAllChecked = this.textContent === 'تحديد الكل';
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = toggleAllChecked;
+          checkbox.nextElementSibling.style.textDecoration = toggleAllChecked ? 'line-through' : 'none';
+          localStorage.setItem(checkbox.id, toggleAllChecked);
+          // Send checkbox state to other device using your preferred method (e.g., AJAX request to server)
+        });
+        this.textContent = toggleAllChecked ? 'إلغاء تحديد الكل' : 'تحديد الكل';
+      });
+    });
+  </script>
+</body>
+</html>
