@@ -1,75 +1,109 @@
 <!DOCTYPE html>
-<html >
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>فئة الأسبوع</title>
-<!-- تنسيق الألوان والخطوط -->
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  .container {
-    background-color: #fff;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فئة الأسبوع</title>
+  <!-- تنسيق الألوان والخطوط -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 20px;
 
-    padding: 15px;
-    text-align: center;
-  }
+      text-align: center;
+    }
 
-  .day-week .item {
-    flex: 1;
-    padding: 30px;
-  }
-  .day-week .item:nth-child(odd) {
-    background-color: #ffffff;
-  }
-</style>
+    .day-week {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .item {
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 5px;
+      margin: 5px;
+      width: 100px;
+
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+
+    }
+
+    h2 {
+
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #666;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: #ddd;
+      width: 80%;
+      margin: 20px auto;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <div class="day-week">
-    <div class="item" id="week"></div>
-    <hr>
-    <div class="item" id="day"></div>
+  <div class="container">
+    <div class="day-week">
+      <!-- عرض فئة الأسبوع -->
+      <div class="item" id="week"></div>
+      <hr>
+      <!-- عرض اسم اليوم -->
+      <div class="item" id="day"></div>
+    </div>
   </div>
-</div>
 
-<script>
-// يحسب فئة الأسبوع الحالي
-function getCurrentWeek() {
-  var now = new Date();
-  var startOfYear = new Date(now.getFullYear(), 0, 0);
-  var diff = now - startOfYear;
-  var oneWeek = 604800000; // عدد الثواني في أسبوع واحد
-  var weekNumber = Math.floor(diff / oneWeek);
-  return weekNumber;
-}
+  <script>
+    // يحسب فئة الأسبوع الحالي
+    function getCurrentWeek() {
+      var now = new Date();
+      var startOfYear = new Date(now.getFullYear(), 0, 0);
+      var diff = now - startOfYear;
+      var oneWeek = 604800000; // عدد الثواني في أسبوع واحد
+      var weekNumber = Math.floor(diff / oneWeek);
+      return weekNumber;
+    }
 
-// يعرض اسم اليوم الحالي
-function getCurrentDayName() {
-    var days = ["l7d", "tnin", "tlat", "larb3", "l5mis", "jom3a", "sbt"];
-  var now = new Date();
-  var dayIndex = now.getDay();
-  return days[dayIndex];
-}
+    // يعرض اسم اليوم الحالي
+    function getCurrentDayName() {
+      var days = ["l7d", "tnin", "tlat", "larb3", "l5mis", "jom3a", "sbt"];
+      var now = new Date();
+      var dayIndex = now.getDay();
+      return days[dayIndex];
+    }
 
-// يعرض فئة الأسبوع عند تحميل الصفحة
-window.onload = function() {
-  var weekNumber = getCurrentWeek();
-
-  var dayName = getCurrentDayName();
-  document.getElementById("week").innerText = "week : " + weekNumber;
-  document.getElementById("day").innerText = "day : " + dayName;
-};
-</script>
-
+    // يعرض فئة الأسبوع واسم اليوم عند تحميل الصفحة
+    window.onload = function() {
+      var weekNumber = getCurrentWeek();
+      var dayName = getCurrentDayName();
+      document.getElementById("week").innerHTML = "<h2>week : " + weekNumber + "</h2>";
+      document.getElementById("day").innerHTML = "<h2>day : " + dayName + "</h2>";
+    };
+  </script>
 </body>
 </html>
