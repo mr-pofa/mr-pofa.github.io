@@ -1,110 +1,31 @@
+
 <!DOCTYPE html>
-<html lang="ar">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>فئة الأسبوع</title>
-  <!-- تنسيق الألوان والخطوط -->
-  <style>
-    body {
-  
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #191919 ;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+    <meta name="viewport" content="width=device-width"/>
+    <meta charSet="utf-8"/>
+    <title>زر للعب الشطرنج</title>
+    <style>
+        body {
+            background-color: #191919; /* تعيين لون الخلفية للصفحة */
+            display: flex;
+            flex-direction: column; /* ترتيب العناصر عمودياً */
+            justify-content: center; /* محاذاة العناصر في الوسط أفقياً */
+            align-items: center; /* محاذاة العناصر في الوسط رأسياً */
+            height: 100vh; /* تعيين ارتفاع الصفحة بنسبة للشاشة بأكملها */
+            margin: 0; /* إزالة الهوامش */
 
-    .container {
-      background-color: #191919 ;
-      padding: 30px;
-      border-radius: 20px;
+        
+        }
+/* width and height height: 60px; */
 
-      text-align: center;
-    }
-
-    .day-week {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .item {
-      background-color: #ffffff;
-      border-radius: 20px;
-      padding: 5px;
-      margin: 5px;
-      width: 100px;
-
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .item:hover {
-      transform: scale(1.05);
-
-    }
-
-    h2 {
-      color :#191919;
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    p {
-      color: #ffffff;
-      font-size: 15px;
-      margin: 0;
-    }
-
-    hr {
-      border: none;
-      height: 2px;
-      background-color: #ffffff;
-      width: 80%;
-      margin: 20px auto;
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="day-week">
-      <!-- عرض فئة الأسبوع -->
-      <div class="item" id="week"></div>
-      <hr>
-      <!-- عرض اسم اليوم -->
-      <div class="item" id="day"></div>
-    </div>
-  </div>
-
-  <script>
-    // يحسب فئة الأسبوع الحالي
-    function getCurrentWeek() {
-      var now = new Date();
-      var startOfYear = new Date(now.getFullYear(), 0, 0);
-      var diff = now - startOfYear;
-      var oneWeek = 604800000; // عدد الثواني في أسبوع واحد
-      var weekNumber = Math.floor(diff / oneWeek);
-      return weekNumber;
-    }
-
-    // يعرض اسم اليوم الحالي
-    function getCurrentDayName() {
-      var days = ["l7d", "tnin", "tlat", "larb3", "l5mis", "jom3a", "sbt"];
-      var now = new Date();
-      var dayIndex = now.getDay();
-      return days[dayIndex];
-    }
-
-    // يعرض فئة الأسبوع واسم اليوم عند تحميل الصفحة
-    window.onload = function() {
-      var weekNumber = getCurrentWeek();
-      var dayName = getCurrentDayName();
-      document.getElementById("week").innerHTML = "<h2>week : " + weekNumber + "</h2>";
-      document.getElementById("day").innerHTML = "<h2>day : " + dayName + "</h2>";
-    };
-  </script>
+    <a href="https://www.chess.com/home"  target="_blank" rel="noopener noreferrer"><button style="width: 150px ;height: 50px;padding: 15px 20px;background-color: #74AA9C	;color: #000;border: none;border-radius: 5px;cursor: pointer;">💬 chat gpt</button></a>
+    <br>
+    <a href="https://www.d.com/home" target="_blank" rel="noopener noreferrer"><button style="width: 150px ;height: 50px;padding: 15px 20px;background-color:#ffffff;color: #000;border: none;border-radius: 5px;cursor: pointer;">♟️ chess</button></a>
+    <br>
+    <a href="https://www.d.com/home" target="_blank" rel="noopener noreferrer"><button style="width: 150px ;height: 50px;padding: 15px 20px;background-color:#353535;color: #000;border: none;border-radius: 5px;cursor: pointer;">🐱‍👤 github</button></a>
 </body>
 </html>
